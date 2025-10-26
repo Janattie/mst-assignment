@@ -104,12 +104,37 @@ Results for both algorithms are saved as:
 
 ### Table 1. Detailed Algorithm Performance Comparison
 
+### Table 1. Detailed Algorithm Performance Comparison
+
 | **Graph ID** | **Graph Type** | **Vertices (V)** | **Edges (E)** | **Algorithm** | **MST Cost** | **Operations Count** | **Execution Time (ms)** | **Relative Efficiency** |
 |:-------------:|:---------------|:----------------:|:--------------:|:---------------|:--------------:|:---------------------:|:------------------------:|:------------------------:|
 | 1 | Medium Density (5 nodes, 7 edges) | 5 | 7 | Prim | **16** | 28 | 1.73 | Baseline |
 | 1 |                                    | 5 | 7 | Kruskal | **16** | 18 | 0.61 | **2.8× faster** |
 | 2 | Sparse (4 nodes, 5 edges) | 4 | 5 | Prim | **6** | 20 | 0.03 | Baseline |
 | 2 |                                    | 4 | 5 | Kruskal | **6** | 13 | 0.03 | ≈ same performance |
+
+> **Observation:**  
+> Both algorithms produced identical MST costs, confirming correctness.  
+> Kruskal’s algorithm required fewer operations and demonstrated ≈ 2.8× faster execution on medium graphs.  
+> On smaller sparse graphs, performance difference was negligible due to reduced computational overhead.
+
+---
+
+### Table 2. Theoretical vs Observed Algorithmic Complexity
+
+| **Algorithm** | **Theoretical Complexity** | **Graph Type** | **Measured Execution Time (ms)** | **Expected Trend** | **Observed Trend** | **Remarks** |
+|:---------------|:----------------------------|:----------------|:-------------------------------:|:-------------------|:-------------------|:-------------|
+| **Prim** | O(E log V) | Medium (5 × 7) | 1.73 | Increases with edge density | Slower on medium graph | Heap operations dominate runtime |
+| **Kruskal** | O(E log E) ≈ O(E log V) | Medium (5 × 7) | 0.61 | Slightly faster on sorted edge list | 2.8× faster | Sorting phase highly efficient |
+| **Prim** | O(E log V) | Sparse (4 × 5) | 0.03 | Decreases sharply with fewer edges | Matches theory | Minimal relaxation overhead |
+| **Kruskal** | O(E log E) | Sparse (4 × 5) | 0.03 | Similar to Prim | Matches theory | Both near-constant cost for small graphs |
+
+> **Interpretation:**  
+> The empirical runtime behavior aligns with theoretical expectations.  
+> Kruskal’s algorithm benefits from simpler edge-sorting logic on smaller graphs,  
+> whereas Prim’s heap-based approach becomes costlier with increasing edge density.  
+> For large, dense networks (E ≫ V), Prim’s optimized priority queue implementation would outperform Kruskal’s due to reduced sorting overhead.
+
 
 > **Observation:**  
 > • Both algorithms produced identical MST costs, confirming correctness.  
