@@ -1,7 +1,7 @@
 
 
-# **Optimization of a City Transportation Network (Minimum Spanning Tree)**
-### *Assignment 3 — Implementation of Prim’s and Kruskal’s Algorithms*
+# **Optimization of a City Transportation Network**
+### *Assignment 3 - Implementation of Prim’s and Kruskal’s Algorithms*
 ---
 
 ## **1. Abstract**
